@@ -1,4 +1,4 @@
-package com.example.tdd_study.dto;
+package com.example.tdd_study.dto.request;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

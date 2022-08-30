@@ -1,6 +1,5 @@
 package com.example.tdd_study.domain;
 
-import com.example.tdd_study.dto.BoardRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +17,4 @@ public class Board {
     @Column(length = 32)
     private String name;
 
-    public Board(BoardRequestDto boardRequestDto) {
-        this.name = boardRequestDto.getName();
-    }
 }

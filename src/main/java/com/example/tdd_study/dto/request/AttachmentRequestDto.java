@@ -1,4 +1,4 @@
-package com.example.tdd_study.dto;
+package com.example.tdd_study.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;

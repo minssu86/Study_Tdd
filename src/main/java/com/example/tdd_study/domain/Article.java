@@ -1,10 +1,8 @@
 package com.example.tdd_study.domain;
 
-import com.example.tdd_study.dto.ArticleRequestDto;
+import com.example.tdd_study.dto.request.ArticleRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import net.bytebuddy.asm.Advice;
-import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -18,8 +16,9 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "board_id")
-    private Integer boardId;
+    @ManyToOne
+    @JoinColumn(name = "board_id")
+    private Board board;
 
     @Column(length = 128)
     private String title;
@@ -33,12 +32,17 @@ public class Article {
     @Column(name = "created_datatime")
     private LocalDateTime createdDatetime;
 
-    public Article(ArticleRequestDto articleRequestDto){
-        this.boardId = articleRequestDto.getBoardId();
+    public Article(Board board, ArticleRequestDto articleRequestDto){
+        this.board = board;
         this.title = articleRequestDto.getTitle();
         this.content = articleRequestDto.getContent();
-        this.viewCount = articleRequestDto.getViewCount();
+        this.viewCount = 0;
         this.createdDatetime = LocalDateTime.now();
+    }
+
+    public void update(ArticleRequestDto articleRequestDto){
+        this.title = articleRequestDto.getTitle();
+        this.content = articleRequestDto.getContent();
     }
 
 }

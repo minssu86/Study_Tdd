@@ -1,6 +1,6 @@
 package com.example.tdd_study.domain;
 
-import com.example.tdd_study.dto.AttachmentRequestDto;
+import com.example.tdd_study.dto.request.AttachmentRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -16,8 +16,9 @@ public class Attachment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "article_id")
-    private Integer articleId;
+    @ManyToOne
+    @JoinColumn(name = "article_id")
+    private Article article;
 
     @Column(length = 255)
     private  String location;
@@ -25,8 +26,8 @@ public class Attachment {
     @Column(name = "created_datetime")
     private LocalDateTime createdDatetime;
 
-    public Attachment(AttachmentRequestDto attachmentRequestDto) {
-        this.articleId = attachmentRequestDto.getArticleId();
+    public Attachment (Article article, AttachmentRequestDto attachmentRequestDto) {
+        this.article = article;
         this.location = attachmentRequestDto.getLocation();
         this.createdDatetime = LocalDateTime.now();
     }

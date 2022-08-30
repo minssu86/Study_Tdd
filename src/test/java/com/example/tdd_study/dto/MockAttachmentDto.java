@@ -1,5 +1,7 @@
 package com.example.tdd_study.dto;
 
+import com.example.tdd_study.dto.request.AttachmentRequestDto;
+
 public class MockAttachmentDto extends AttachmentRequestDto {
 
     public MockAttachmentDto(int testCase){

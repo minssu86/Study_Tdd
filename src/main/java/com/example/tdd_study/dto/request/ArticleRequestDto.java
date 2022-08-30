@@ -1,4 +1,4 @@
-package com.example.tdd_study.dto;
+package com.example.tdd_study.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +10,5 @@ public class ArticleRequestDto {
     private Integer boardId;
     private String title;
     private String content;
-    private Integer viewCount;
 
 }
