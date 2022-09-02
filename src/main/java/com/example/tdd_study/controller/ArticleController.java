@@ -1,23 +1,34 @@
 package com.example.tdd_study.controller;
 
+import com.example.tdd_study.dto.request.ArticleRequestDto;
+import com.example.tdd_study.dto.response.ArticleResponseDto;
 import com.example.tdd_study.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
 @Slf4j
 public class ArticleController {
 
-    private ArticleService articleService;
+    private final ArticleService articleService;
 
-    @PostMapping("/{board}/Article")
-    public String create(@PathVariable String board){
-        log.info("board Num : {}", board);
-        return "hello";
+    @PostMapping("/{boardId}/Article")
+    public ArticleResponseDto create(@PathVariable Integer boardId, @RequestBody ArticleRequestDto articleRequestDto){
+        return articleService.create(boardId, articleRequestDto);
     }
+
+    @DeleteMapping("/Article/{articleId}")
+    public String delete(@PathVariable Integer articleId){
+        return articleService.delete(articleId);
+    }
+
+    @PutMapping("/Article/{articleId}")
+    public String update(@PathVariable Integer articleId, @RequestBody ArticleRequestDto articleRequestDto){
+        return articleService.update(articleId, articleRequestDto);
+    }
+
+
 
 }

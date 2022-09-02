@@ -1,6 +1,5 @@
 package com.example.tdd_study.domain;
 
-import com.example.tdd_study.dto.request.AttachmentRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -26,9 +25,9 @@ public class Attachment {
     @Column(name = "created_datetime")
     private LocalDateTime createdDatetime;
 
-    public Attachment (Article article, AttachmentRequestDto attachmentRequestDto) {
+    public Attachment (Article article, String location) {
         this.article = article;
-        this.location = attachmentRequestDto.getLocation();
+        this.location = location;
         this.createdDatetime = LocalDateTime.now();
     }
 

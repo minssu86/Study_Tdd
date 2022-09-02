@@ -28,7 +28,7 @@ public class ArticleResponseDtoTest {
         Attachment attachment = new Attachment();
 
         // When
-        ArticleResponseDto articleResponseDto = new ArticleResponseDto(board, article, attachment);
+        ArticleResponseDto articleResponseDto = new ArticleResponseDto(article, attachment);
 
         // Then
         assertThat(articleResponseDto.getName()).isEqualTo(board.getName());

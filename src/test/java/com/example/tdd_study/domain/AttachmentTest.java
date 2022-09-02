@@ -2,8 +2,6 @@ package com.example.tdd_study.domain;
 
 import com.example.tdd_study.dto.MockArticleDto;
 import com.example.tdd_study.dto.request.ArticleRequestDto;
-import com.example.tdd_study.dto.request.AttachmentRequestDto;
-import com.example.tdd_study.dto.MockAttachmentDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,14 +18,14 @@ public class AttachmentTest {
     void CreateAttachmentSuccess() {
 
         // Given
-        AttachmentRequestDto attachmentRequestDto = new MockAttachmentDto(1);
+        String location = "location 1";
         ArticleRequestDto articleRequestDto = new MockArticleDto(1);
         Board board = new Board();
         Article article = new Article(board, articleRequestDto);
         LocalDateTime createdDatetime = LocalDateTime.now();
 
         // When
-        Attachment attachment = new Attachment(article, attachmentRequestDto);
+        Attachment attachment = new Attachment(article, location);
 
         // Then
         assertThat(attachment.getId()).isEqualTo(null);
@@ -38,7 +36,7 @@ public class AttachmentTest {
         assertThat(attachment.getArticle().getContent()).isEqualTo(articleRequestDto.getContent());
         assertThat(attachment.getArticle().getViewCount()).isEqualTo(0);
         assertThat(attachment.getArticle().getCreatedDatetime()).isCloseTo(createdDatetime, within(1, ChronoUnit.SECONDS));
-        assertThat(attachment.getLocation()).isEqualTo(attachmentRequestDto.getLocation());
+        assertThat(attachment.getLocation()).isEqualTo(location);
         assertThat(attachment.getCreatedDatetime()).isCloseTo(createdDatetime, within(1, ChronoUnit.SECONDS));
 
     }

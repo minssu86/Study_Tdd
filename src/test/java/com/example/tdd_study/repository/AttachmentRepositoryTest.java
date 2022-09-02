@@ -4,9 +4,7 @@ import com.example.tdd_study.domain.Article;
 import com.example.tdd_study.domain.Attachment;
 import com.example.tdd_study.domain.Board;
 import com.example.tdd_study.dto.MockArticleDto;
-import com.example.tdd_study.dto.MockAttachmentDto;
 import com.example.tdd_study.dto.request.ArticleRequestDto;
-import com.example.tdd_study.dto.request.AttachmentRequestDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,8 +39,8 @@ public class AttachmentRepositoryTest {
         ArticleRequestDto articleRequestDto = new MockArticleDto(1);
         Article article = new Article(board, articleRequestDto);
         articleRepository.save(article);
-        AttachmentRequestDto attachmentRequestDto = new MockAttachmentDto(1);
-        Attachment attachment = new Attachment(article, attachmentRequestDto);
+        String location = "location 1";
+        Attachment attachment = new Attachment(article, location);
         attachmentRepository.save(attachment);
         LocalDateTime createdDatetime = LocalDateTime.now();
 
@@ -55,7 +53,7 @@ public class AttachmentRepositoryTest {
         assertThat(result).isSameAs(attachment);
         assertThat(result.getId()).isEqualTo(1);
         assertThat(result.getArticle()).isSameAs(article);
-        assertThat(result.getLocation()).isEqualTo(attachment.getLocation());
+        assertThat(result.getLocation()).isEqualTo(location);
         assertThat(result.getCreatedDatetime()).isCloseTo(createdDatetime, within(1, ChronoUnit.SECONDS));
 
 
