@@ -12,6 +12,7 @@ public class MockArticleResponseDto extends ArticleResponseDto {
         super.setTitle(title);
         super.setCreatedDatetime(LocalDateTime.parse(createdDatetime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
         super.setLocation(location);
+
     }
 
 }

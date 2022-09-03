@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @Slf4j
@@ -27,6 +29,11 @@ public class ArticleController {
     @PutMapping("/Article/{articleId}")
     public String update(@PathVariable Integer articleId, @RequestBody ArticleRequestDto articleRequestDto){
         return articleService.update(articleId, articleRequestDto);
+    }
+
+    @GetMapping("/Article")
+    public List<ArticleResponseDto> getArticleList(){
+        return articleService.getArticleList();
     }
 
 
